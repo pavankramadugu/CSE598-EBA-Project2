@@ -1,4 +1,4 @@
-package project2
+package project2 // Package project2, Do not change this line.
 
 import (
 	"encoding/json"
@@ -41,18 +41,22 @@ func (s *SupplyChainContract) InitLedger(ctx contractapi.TransactionContextInter
 
 // CreateProduct creates a new product in the ledger
 func (s *SupplyChainContract) CreateProduct(ctx contractapi.TransactionContextInterface, id, name, owner, description, category string) error {
+	// Write your implementation here
 }
 
 // UpdateProduct allows updating a product's status, owner, description, and category
 func (s *SupplyChainContract) UpdateProduct(ctx contractapi.TransactionContextInterface, id string, newStatus string, newOwner string, newDescription string, newCategory string) error {
+	// Write your implementation here
 }
 
 // TransferOwnership changes the owner of a product
 func (s *SupplyChainContract) TransferOwnership(ctx contractapi.TransactionContextInterface, id, newOwner string) error {
+	// Write your implementation here
 }
 
 // QueryProduct retrieves a single product from the ledger by ID
 func (s *SupplyChainContract) QueryProduct(ctx contractapi.TransactionContextInterface, id string) (*Product, error) {
+	// Write your implementation here
 }
 
 // putProduct is a helper method for inserting or updating a product in the ledger
