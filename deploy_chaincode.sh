@@ -3,6 +3,7 @@
 # Check if the path to the smart contract code is provided
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <path-to-code>"
+    echo "<path-to-code> is the directory containing the Go smart contract code after running 'go mod tidy' and 'go mod vendor'"
     exit 1
 fi
 
