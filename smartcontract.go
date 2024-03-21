@@ -9,13 +9,13 @@ import (
 
 // Product represents the structure for a product entity
 type Product struct {
-	ID        string    `json:"id"`
-	Name      string    `json:"name"`
-	Status    string    `json:"status"`
-	Owner     string    `json:"owner"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	Category  string    `json:"category"`
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	Status    string `json:"status"`
+	Owner     string `json:"owner"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
+	Category  string `json:"category"`
 }
 
 // SupplyChainContract defines the smart contract structure
@@ -23,11 +23,25 @@ type SupplyChainContract struct {
 	contractapi.Contract
 }
 
+// getTimestamp returns the transaction timestamp as a string
+func (s *SupplyChainContract) getTimestamp(ctx contractapi.TransactionContextInterface) (string, error) {
+	txTimestamp, err := ctx.GetStub().GetTxTimestamp()
+	if err != nil {
+		return "", fmt.Errorf("failed to get transaction timestamp: %v", err)
+	}
+	return time.Unix(txTimestamp.Seconds, int64(txTimestamp.Nanos)).Format(time.RFC3339), nil
+}
+
 // InitLedger initializes the ledger with some example products
 func (s *SupplyChainContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
+	timestamp, err := s.getTimestamp(ctx)
+	if err != nil {
+		return err
+	}
+
 	// Initial set of products to populate the ledger
 	products := []Product{
-		{ID: "p1", Name: "Laptop", Status: "Manufactured", Owner: "CompanyA", CreatedAt: time.Now(), UpdatedAt: time.Now(), Description: "High-end gaming laptop", Category: "Electronics"},
+		{ID: "p1", Name: "Laptop", Status: "Manufactured", Owner: "CompanyA", CreatedAt: timestamp, UpdatedAt: timestamp, Description: "High-end gaming laptop", Category: "Electronics"},
 	}
 
 	for _, product := range products {
