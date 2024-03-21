@@ -1,4 +1,4 @@
-package project2 // Package project2, Do not change this line.
+package main // Package main, Do not change this line.
 
 import (
 	"encoding/json"
