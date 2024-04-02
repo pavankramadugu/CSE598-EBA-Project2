@@ -88,11 +88,6 @@ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name suppl
 
 # Commit the chaincode to the channel
 log "Committing the chaincode to the channel..."
-peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name supplyChain --version 1.0 --sequence 1 --tls true --cafile ${PWD}/organizations/ordererOrgan
-
-
-# Commit the chaincode to the channel
-log "Committing the chaincode to the channel..."
 peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name supplyChain --version 1.0 --sequence 1 --tls true --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt 2>&1 | tee -a $LOG_FILE
 
 # Check if the chaincode is committed
